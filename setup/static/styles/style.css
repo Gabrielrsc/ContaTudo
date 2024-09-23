@@ -1,0 +1,295 @@
+@import url("_root.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    color: #444;
+}
+#container {
+  height: auto;
+  min-height: 520px;
+}
+
+.hidden {
+    display: none;
+}
+/*Nome do site | Logo */
+.logo_name  {
+    font-size: 2em;
+    color: var(--bg-dark);
+}
+
+.logo_name  span{
+    color: var(--second-color);
+    font-weight: bold;
+    
+}
+form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .toggle-password {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 15px; /* Ajuste conforme necessário */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Compensa a altura do botão */
+    color: #acacac; /* Cor do ícone */
+  }
+
+  .toggle-password {
+    font-size: 1rem;
+  }
+
+  .input-field input:focus + .toggle-password i {
+    color: var(--second-color); /* Cor do ícone quando o campo está em foco */
+}
+
+  
+  
+
+.input-field {
+    max-width: 380px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0 0 0.4rem;
+    position: relative;
+  }
+  
+  .input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+  }
+  
+  .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+ 
+  .input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+  }
+
+
+  .input-field input:focus {
+    outline: 2px solid var(--primary-color);
+    background-color: #f0f0f0;
+    border-radius: 0 2rem 2rem 2rem;
+    padding-left: 1rem;
+
+}
+
+.input-field:focus-within {
+  background: var(--primary-color);
+
+  
+}
+
+.input-field:focus-within i {
+ color: #FFF;
+  
+}
+
+
+  
+  .btn {
+    width: 150px;
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px auto;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  .btn:hover {
+    background-color: var(--second-color);
+  }
+
+  
+  .main{
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-dark); /*ou --bg-color*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+    #container {
+        width: 320px;
+        height: 520px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 0px 6px -1px #000000; 
+        box-shadow: 4px 4px 4px -1px rgba(0, 0, 0, 0.5);
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+    }   
+        #container .banner {
+            margin: auto;
+            width: 22rem;
+            height: 22rem;
+            background: var(--primary-color);
+            display: none;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #container .banner p{
+            color: #fff; 
+            font-weight: 400;
+        }
+
+        #container .box-login {
+            width: 320px;
+            height: 520px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+            .box-login .box {
+                width: 90%;
+                height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+
+            .box-login .box-account {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .box-login p {
+                padding: 1rem;
+                text-align: center;
+            }
+    
+    #bubble {
+        cursor: pointer;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 1px solid  var(--primary-color);
+        background:  var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .check{
+        padding: 0.4rem 0;
+    }
+    footer{
+        padding: 1rem;
+    }    
+
+    .message {
+      padding: 19px 60px;
+      position: fixed;
+      top: 20px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.8); /* Fundo preto com leve opacidade */
+      border-radius: 3px;
+      color: #fff;
+      opacity: 0; /* Começa invisível */
+      transform: translateX(100%); /* Começa fora da tela à direita */
+      z-index: 1000;
+      transition: opacity 0.5s ease, transform 0.5s ease; /* Transições para opacidade e transformação */
+  }
+  
+  .message.show {
+      opacity: 1; /* Torna visível */
+      transform: translateX(0); /* Move para sua posição original */
+  }
+  
+  .message.hide {
+      opacity: 0; /* Oculta gradualmente */
+      transform: translateX(100%); /* Move para fora da tela à direita */
+  }
+  
+  .message.hidden {
+      display: none; /* Esconde completamente após a transição */
+  }
+  
+  .message::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 5px;
+      background-color: red; /* Cor vermelha para a animação */
+      animation: time 3s forwards; /* Duração da animação */
+  }
+  
+  @keyframes time {
+      0% {
+          width: 0;
+      }
+      100% {
+          width: 100%;
+      }
+  }
+
+
+    @media (min-width: 1024px) {
+        #container {
+            width: 902px;
+            justify-content: space-between;
+        }  
+
+            #container .banner {
+                display: flex;
+            }
+
+            #container .box-login {
+                width: 450px;
+                border-radius: 10px 10px 10px 0px;
+            }
+}

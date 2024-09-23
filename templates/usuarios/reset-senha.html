@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt=br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar senha</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'styles/style.css'%}">
+    <script type="text/javascript" src="{% static 'script.js'%}"></script>
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+    {% if success_message %}
+    <div class="message show" id="success-message">{{ success_message }}</div>
+    {% endif %}
+<div class="main">
+    <div id="container">
+        <div class="banner">
+            <img src="{% static 'assets/img/password.svg'%}" alt="imagem-login">
+        </div>
+
+        <div class="box-login">
+            
+
+            <div class="box-account">
+                
+                <form action="#" class="sign-up-form">
+                    <h2>Perdeu a sua senha? </h2>
+                    <p>Recupere via email agora, insira a sua conta existente</p>
+                    <div class="input-field">
+                      <i class="fas fa-user"></i>
+                      <input type="text" placeholder="Username" />
+                    </div>
+                    <div class="input-field">
+                      <i class="fas fa-envelope"></i>
+                      <input type="email" placeholder="Email" />
+                    </div>
+
+                      <p style="font-size: 0.8rem;">
+                        Um código será enviado para a sua caixa
+                        de entrada, copie esse código e cole na
+                        próxima tela, cetifique-se de que o seu
+                        apelido bem como o e-mail esteja corretos
+                        e que seja o mesmo da conta que você deseja
+                        recuperar
+                    </p>
+
+                    <button type="submit" class="btn">Obter o código</button>
+                  </form>
+                
+              
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Desenvolvido por <a href="https://github.com/Gabrielrsc">Gabriel Robertson</a> &copy; 2024 - <a href="https://storyset.com/online">Online illustrations by Storyset</a>.</p>
+    </footer>
+
+    </div>
+    <a href="{% url 'login'%}">
+        <div id="bubble">
+            <img src="{% static 'assets/img/user.png' %}" alt="icone-usuário" title="fazer-login">
+        </div>
+    </a>
+</body>
+</html>
