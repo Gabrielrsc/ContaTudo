@@ -8,9 +8,11 @@ Sobre o projeto....
 ![Badge](https://img.shields.io/static/v1?label=status&message=EM%20DESENVOLVIMENTO&color=green&style=for-the-badge&logo=VSCODE)
 
 ### 🛠️ Tecnologias
+<img  align="center" height="20" width="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" />
 <img  align="center" height="20" width="20"  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" /> 
 <img  align="center" height="20" width="20" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"> 
 <img  align="center" height="20" width="20" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"> 
+<img  align="center" height="20" width="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
 
 
 
