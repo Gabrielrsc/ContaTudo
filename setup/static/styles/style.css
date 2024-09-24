@@ -229,6 +229,10 @@ form {
         padding: 1rem;
     }    
 
+    .rodape p, a{
+        color: var(--color-font-second);
+    }
+
     .message {
       padding: 19px 60px;
       position: fixed;
