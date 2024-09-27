@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <div class="main">
+        <div id="container">
+            <div class="banner">
+                <img src="{% static 'assets/img/reset_password.svg' %}" alt="Imagem de redefinição de senha">
+            </div>
+
+            <div class="box-login">
+                <div class="box-account">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Redefinir Senha</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="rodape">
+            <p>Desenvolvido por <a href="https://github.com/Gabrielrsc">Gabriel Robertson</a> &copy; 2024.</p>
+        </footer>
+    </div>
+</body>
+</html>

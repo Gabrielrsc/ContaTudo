@@ -132,6 +132,8 @@ form {
     cursor: pointer;
     transition: 0.5s;
   }
+
+
   
   .btn:hover {
     background-color: var(--second-color);

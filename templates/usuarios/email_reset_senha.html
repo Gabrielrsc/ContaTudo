@@ -1,0 +1,12 @@
+{% autoescape off %}
+Olá {{ user.get_username }},
+
+Você solicitou a redefinição da sua senha. Clique no link abaixo para redefini-la:
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+Se você não solicitou esta alteração, por favor, ignore este e-mail.
+
+Atenciosamente,
+Equipe de Suporte
+{% endautoescape %}

@@ -1,0 +1,47 @@
+<!-- usuarios/reset_password_done.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar senha</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <script type="text/javascript" src="{% static 'script.js' %}"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% if success_message %}
+    <div class="message show" id="success-message">{{ success_message }}</div>
+    {% endif %}
+    
+    <div class="main">
+        <div id="container">
+            <div class="banner">
+                <img src="{% static 'assets/img/password.svg' %}" alt="Imagem de recuperação de senha">
+            </div>
+
+            <div class="box-login">
+                <div class="box-account">
+                  <h2>Solicitação de Redefinição de Senha Enviada</h2>
+                  <p>Verifique seu e-mail para um link de redefinição de senha. Caso não veja o e-mail na caixa de entrada, verifique a pasta de spam.</p>
+                  <a class="btn" href="{% url 'login' %}">Voltar para o login</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="rodape">
+            <p>Desenvolvido por <a href="https://github.com/Gabrielrsc">Gabriel Robertson</a> &copy; 2024 - <a href="https://storyset.com/online">Online illustrations by Storyset</a>.</p>
+        </footer>
+    </div>
+
+    <a href="{% url 'login' %}">
+        <div id="bubble">
+            <img src="{% static 'assets/img/user.png' %}" alt="Ícone de usuário" title="Fazer login">
+        </div>
+    </a>
+</body>
+</html>
