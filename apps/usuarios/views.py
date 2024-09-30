@@ -17,23 +17,21 @@ from django.contrib.auth.password_validation import validate_password
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from apps.usuarios.validators import validar_email, validate_email, validar_senha, ValidationError
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib import messages
 from django.contrib.auth.password_validation import validate_password
-    
-class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = 'usuarios/reset_senha_confirm.html'
+from django.contrib.auth.views import PasswordResetConfirmView
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import SetPasswordForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['uidb64'] = self.kwargs['uidb64']
-        context['token'] = self.kwargs['token']
-        return context
+from django import forms
+from django.contrib.auth.forms import SetPasswordForm
+
+import logging
+
+logger = logging.getLogger(__name__)
+    
 
 def login(request):
     if request.method == "POST":
@@ -54,7 +52,6 @@ def login(request):
             messages.error(request, 'Usuário não encontrado.')
 
     return render(request, 'usuarios/index.html')
-
 
 def cadastro(request):
     if request.method == "POST":
@@ -156,28 +153,6 @@ def solicitar_redefinicao_senha(request):
 
     return render(request, 'usuarios/reset_senha.html')  # Altere para reset_senha.html
 
-class CustomPasswordResetView(PasswordResetView):
-    template_name = 'usuarios/reset_senha.html'
-    email_template_name = 'usuarios/email_reset_senha.html'  # Crie este template para o email
-    subject_template_name = 'usuarios/email_subject.txt'  # Crie este template para o assunto do email
-    success_url = 'usuarios/password_reset_done/'  # Redireciona após o envio do email
-    
-def resetSenha(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        try:
-            user = User.objects.get(email=email)
-            token = default_token_generator.make_token(user)
-            uid = urlsafe_base64_encode(force_bytes(user.pk))
-            subject = 'Redefinição de Senha'
-            message = f'Siga o link para redefinir sua senha: http://127.0.0.1:8000/reset-senha-confirm/{uid}/{token}/'
-            send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
-            messages.success(request, 'E-mail de redefinição de senha enviado com sucesso!')
-        except User.DoesNotExist:
-            messages.error(request, 'Usuário não encontrado.')
-
-    return render(request, 'usuarios/reset_senha.html')
-
 def resetar_senha(request, uid, token):
     try:
         user_id = force_str(urlsafe_base64_decode(uid))
@@ -211,27 +186,6 @@ def resetar_senha(request, uid, token):
 
     return render(request, 'usuarios/resetar_senha.html', {'uid': uid, 'token': token})
     
-def test_email(request):
-    subject = 'Testando E-mail'
-    message = 'Este é um e-mail de teste.'
-    from_email = settings.EMAIL_HOST_USER
-    recipient_list = ['gabrielrobertson.s@gmail.com']
-
-    try:
-        send_mail(subject, message, from_email, recipient_list)
-        return HttpResponse("E-mail enviado com sucesso!")
-    except Exception as e:
-        return HttpResponse(f"Erro ao enviar e-mail: {e}")
-    
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.urls import reverse_lazy
-
-class DefinirNovaSenhaView(PasswordResetConfirmView):
-    template_name = 'definir_nova_senha.html'
-    success_url = reverse_lazy('login')
-
-
-
 def redefinir_senha(request, uidb64, token):
     """
     View para redefinir a senha depois que o usuário clicar no link recebido por e-mail.
@@ -275,30 +229,28 @@ def redefinir_senha(request, uidb64, token):
 
     return render(request, 'usuarios/reset_senha_confirm.html', {'uidb64': uidb64, 'token': token})
 
+class DefinirNovaSenhaView(PasswordResetConfirmView):
+    template_name = 'definir_nova_senha.html'
+    success_url = reverse_lazy('login')
 
-
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.urls import reverse_lazy
-from django.contrib.auth.forms import SetPasswordForm
-
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'usuarios/reset_senha.html'
+    email_template_name = 'usuarios/email_reset_senha.html'  # Crie este template para o email
+    subject_template_name = 'usuarios/email_subject.txt'  # Crie este template para o assunto do email
+    success_url = 'usuarios/password_reset_done/'  # Redireciona após o envio do email
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'usuarios/reset_senha_confirm.html'
     success_url = reverse_lazy('password_reset_complete')
-    form_class = SetPasswordForm
+    form_class = SetPasswordForm   
     
-    
-    
-    
-import logging
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nova senha'})
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme a nova senha'})
+    )
 
-logger = logging.getLogger(__name__)
-
-class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    def form_valid(self, form):
-        logger.info("Formulário de redefinição de senha válido. Iniciando redefinição...")
-        user = form.save()
-        logger.info(f"Senha redefinida com sucesso para o usuário: {user}")
-        return super().form_valid(form)
     
 def dispatch(self, *args, **kwargs):
     self.user = self.get_user(kwargs['uidb64'])

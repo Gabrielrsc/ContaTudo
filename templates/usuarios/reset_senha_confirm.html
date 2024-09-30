@@ -1,35 +1,44 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redefinir Senha</title>
+{% block title %}ContaTudo - Nova Senha{% endblock %}
+{% block content %}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
-</head>
-<body>
-    <div class="main">
-        <div id="container">
-            <div class="banner">
-                <img src="{% static 'assets/img/reset_password.svg' %}" alt="Imagem de redefinição de senha">
-            </div>
-
-            <div class="box-login">
-                <div class="box-account">
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Redefinir Senha</button>
-                </div>
-            </div>
-        </div>
-
-        <footer class="rodape">
-            <p>Desenvolvido por <a href="https://github.com/Gabrielrsc">Gabriel Robertson</a> &copy; 2024.</p>
-        </footer>
+<div id="container">
+    <div class="banner">
+        <img src="{% static 'assets/img/password.svg' %}" alt="Imagem de redefinição de senha">
     </div>
-</body>
-</html>
+
+    <div class="box-login">
+        <div class="box-account">
+            <form method="post">
+                {% csrf_token %}
+
+                <h2>Digite sua nova senha</h2>
+
+                
+                <!-- Campo para a nova senha -->
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type='password' name="new_password1" id="id_new_password1" class="form-control" placeholder="Digite sua nova senha" required>
+                    <button type="button" id="togglePassword" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <!-- Campo para confirmar a nova senha -->
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type='password' placeholder="Confirme a nova senha" required name="new_password2" id="id_new_password2"/>
+                    <button type="button" id="toggleConfirmPassword" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>     
+                </div>
+
+                <!-- Botão para redefinir a senha -->
+                <button class="btn" type="submit">Redefinir Senha</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static './script.js' %}"></script>
+{% endblock %}

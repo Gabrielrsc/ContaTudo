@@ -1,23 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar senha</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
-    <script type="text/javascript" src="{% static 'script.js' %}"></script>
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    {% if success_message %}
-    <div class="message show" id="success-message">{{ success_message }}</div>
-    {% endif %}
-    
-    <div class="main">
+{% block content %}
+{% block title %}ContaTudo - Cadastrar{% endblock %}
         <div id="container">
             <div class="banner">
                 <img src="{% static 'assets/img/password.svg' %}" alt="Imagem de recuperação de senha">
@@ -36,24 +20,17 @@
                         </div>
 
                         <p class="instructions">
-                            Um código será enviado para a sua caixa de entrada. Copie esse código e cole na próxima tela. Certifique-se de que seu e-mail esteja correto e que seja o mesmo da conta que deseja recuperar.
+                            Um e-mail com um link para redefinir sua senha foi enviado para o endereço que você informou. É muito importante que você verifique tanto a sua caixa de entrada quanto a pasta de spam.
                         </p>
 
-                        <button type="submit" class="btn">Obter o código</button>
+                        <button type="submit" class="btn">Redefinir Senha</button>
                     </form>
                 </div>
             </div>
         </div>
-        
-        <footer class="rodape">
-            <p>Desenvolvido por <a href="https://github.com/Gabrielrsc">Gabriel Robertson</a> &copy; 2024 - <a href="https://storyset.com/online">Online illustrations by Storyset</a>.</p>
-        </footer>
-    </div>
-
     <a href="{% url 'login' %}">
         <div id="bubble">
             <img src="{% static 'assets/img/user.png' %}" alt="Ícone de usuário" title="Fazer login">
         </div>
     </a>
-</body>
-</html>
+{% endblock %}

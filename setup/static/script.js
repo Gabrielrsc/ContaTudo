@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById('togglePassword').addEventListener('click', function() {
-    const passwordInput = document.getElementById('senha');
+    const passwordInput = document.getElementById('id_new_password1');
     const passwordType = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', passwordType);
     
@@ -30,7 +30,7 @@ document.getElementById('togglePassword').addEventListener('click', function() {
 });
 
 document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
-    const confirmPasswordInput = document.getElementById('confirm_password');
+    const confirmPasswordInput = document.getElementById('id_new_password2');
     const confirmPasswordType = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     confirmPasswordInput.setAttribute('type', confirmPasswordType);
     

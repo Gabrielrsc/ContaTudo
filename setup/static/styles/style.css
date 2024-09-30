@@ -119,7 +119,12 @@ form {
 
   
   .btn {
+    padding: 0.5rem;
     width: 150px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
     background-color: var(--primary-color);
     border: none;
     outline: none;
@@ -235,6 +240,8 @@ form {
         color: var(--color-font-second);
     }
 
+
+
     .message {
       padding: 19px 60px;
       position: fixed;
@@ -282,6 +289,7 @@ form {
           width: 100%;
       }
   }
+
 
 
     @media (min-width: 1024px) {

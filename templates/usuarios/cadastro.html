@@ -1,45 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar conta</title>
-
-    <!-- CSS -->
-      <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'styles/style.css'%}">
-    
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-
-
-</head>
-<body>
-        <!-- Mensagem de sucesso -->
-        {% if success_message %}
-            <div class="message" id="success-message">{{ success_message }}</div>
-        {% endif %}
-
-        <!-- Erro de e-mail -->
-        {% if form_error %}
-            <div class="message" id="from-error-message">{{ form_error }}</div>
-        {% endif %}
-    
-        <!-- Erro de e-mail -->
-        {% if email_error %}
-            <div class="message" id="email-error-message">{{ email_error }}</div>
-        {% endif %}
-    
-        <!-- Erro de senha -->
-        {% if password_error %}
-            <div class="message" id="password-error-message">{{ password_error }}</div>
-        {% endif %}
-
-  <div class="main">
+{% block content %}
+{% block title %}ContaTudo - Cadastrar{% endblock %}
     <div id="container">
         <div class="banner">
             <img src="{% static 'assets/img/register.svg'%}" alt="imagem-login">
@@ -62,7 +24,7 @@
             
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Senha" name="senha" id="senha"/>
+                    <input type="password" placeholder="Senha" name="senha" id="id_new_password1"/>
                     <button type="button" id="togglePassword" class="toggle-password">
                         <i class="fas fa-eye"></i>
                     </button>
@@ -71,7 +33,7 @@
             
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Confirme sua senha" name="confirm_password" id="confirm_password"/>
+                    <input type="password" placeholder="Confirme sua senha" name="confirm_password" id="id_new_password2"/>
                     <button type="button" id="toggleConfirmPassword" class="toggle-password">
                         <i class="fas fa-eye"></i>
                     </button>
@@ -86,26 +48,9 @@
             </div>
         </div>
     </div>
-    <footer class="rodape">
-      <p>Desenvolvido por <a href="https://github.com/Gabrielrsc" target="_blank">Gabriel Robertson</a> &copy; 2024 - <a href="https://storyset.com/online">Online illustrations by Storyset</a>.</p>
-  </footer>
-   
-
-    
-  </div>
-  
-  <a href="{% url 'login'%}">
-    <div id="bubble">
-        <img src="{% static 'assets/img/user.png' %}" alt="icone-usuário" title="fazer-login">
-    </div>
-</a>
-
-
-<!-- Seu JavaScript personalizado -->
-
-
-<script src="{% static 'script.js' %}"></script>
-
-
-</body>
-</html>
+    <a href="{% url 'login' %}">
+        <div id="bubble">
+            <img src="{% static 'assets/img/user.png' %}" alt="Ícone de usuário" title="Fazer login">
+        </div>
+    </a>
+{% endblock %}
