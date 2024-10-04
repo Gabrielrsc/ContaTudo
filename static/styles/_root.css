@@ -5,8 +5,9 @@
     --bg-color2:rgb(111,207,151);
     --primary-color: #6FCF97;
     --second-color: #27AE60;
-    --bg-dark: #1D1D1D;
+    --bg-dark: #263238;
     --color-font: #c0c0c0;
+    --color-font-second: #B5B5B5;
   }
 
 
@@ -20,3 +21,4 @@ body,
 input {
     font-family: "Overpass", sans-serif;
 }
+
